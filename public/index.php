@@ -15,10 +15,8 @@ if (!isset($_SERVER['APP_ENV'])) {
     (new Dotenv())->load(__DIR__.'/../.env');
 }
 
-if ($_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev'))) {
-    umask(0000);
-    Debug::enable();
-}
+$_SERVER['APP_ENV'] = 'prod';
+Debug::enable();
 
 
 if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? false) {
